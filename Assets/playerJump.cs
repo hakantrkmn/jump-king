@@ -49,8 +49,7 @@ public class playerJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity.y);
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -2.8f, 2.8f), transform.position.y, transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -2.45f, 2.45f), transform.position.y, transform.position.z);
         if (gameObject.GetComponent<CollisionManager>().myGroundInfo != CollisionManager.GroundInfoEnum.notGrounded)
         {
             if (gameObject.GetComponent<Rigidbody2D>().velocity.y == 0 && animationTrigger)
@@ -96,6 +95,11 @@ public class playerJump : MonoBehaviour
             else if (Input.GetMouseButton(0))
             {
                 power += Time.deltaTime;
+                if (power > 1.5f)
+                {
+                    power = 1.5f;
+                }
+                Debug.Log(power);
             }
             else if (Input.GetMouseButtonUp(0))
             {
