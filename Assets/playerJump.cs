@@ -45,12 +45,19 @@ public class playerJump : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = player_5;
     }
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "star")
+        {
+            Time.timeScale = 0;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(gameObject.GetComponent<Rigidbody2D>().velocity.x);
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -2.45f, 2.45f), transform.position.y, transform.position.z);
-        if (gameObject.GetComponent<CollisionManager>().myGroundInfo != CollisionManager.GroundInfoEnum.notGrounded)
+        if (gameObject.GetComponent<CollisionManager>().myGroundInfo != CollisionManager.GroundInfoEnum.notGrounded && Mathf.Abs(gameObject.GetComponent<Rigidbody2D>().velocity.x) < 0.2 )
         {
             if (gameObject.GetComponent<Rigidbody2D>().velocity.y == 0 && animationTrigger)
             {
@@ -99,7 +106,6 @@ public class playerJump : MonoBehaviour
                 {
                     power = 1.5f;
                 }
-                Debug.Log(power);
             }
             else if (Input.GetMouseButtonUp(0))
             {
