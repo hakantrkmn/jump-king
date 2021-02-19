@@ -55,7 +55,7 @@ public class playerJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -2.45f, 2.45f), transform.position.y, transform.position.z);
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -3.05f, 3.05f), transform.position.y, transform.position.z);
         if (gameObject.GetComponent<CollisionManager>().myGroundInfo != CollisionManager.GroundInfoEnum.notGrounded && Mathf.Abs(gameObject.GetComponent<Rigidbody2D>().velocity.x) < 0.2 )
         {
             if (gameObject.GetComponent<Rigidbody2D>().velocity.y == 0 && animationTrigger)
@@ -81,7 +81,7 @@ public class playerJump : MonoBehaviour
                     }
                     else if (xAngle>75)
                     {
-                        jumpVector = new Vector2(-0.3f, 1.0f);
+                        jumpVector = new Vector2(-0.25f, 1.0f);
                     }
                 }
                 else if (fingerPoint.x > transform.position.x)
@@ -93,7 +93,7 @@ public class playerJump : MonoBehaviour
                     }
                     else if (xAngle > 75)
                     {
-                        jumpVector = new Vector2(0.3f, 1.0f);
+                        jumpVector = new Vector2(0.25f, 1.0f);
                     }
                 }
                 
