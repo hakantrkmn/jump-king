@@ -4,40 +4,52 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-    public enum GroundInfoEnum
-    {
-        notGrounded,
-        GroundedOnBasicGround,
-        GroundedOnIceGround,
-        TochedToWall
-    }
-    public GroundInfoEnum myGroundInfo;
-    public GameObject myPlayer;
+    public sideInfo touchedSideInfo = sideInfo.UNDEFINED;
+    public collisionInfo PlayerCollisionInfo;
+    public bool isPlayerProperlyOnPlatform;
+
     private void OnCollisionEnter2D(Collision2D collision)
-    {//ice veya ground'ın 2 tarafı da duvar efeği göstermeli
-        myGroundInfo = statusControl(collision.collider.tag[0]);
+    {
+        PlayerCollisionInfo = statusControl(collision.collider);
+        touchedSideInfo = sideControl(collision.contacts[0].normal);
+        isPlayerProperlyOnPlatform = edgeControl();
+
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        myGroundInfo = GroundInfoEnum.notGrounded;
+        PlayerCollisionInfo = collisionInfo.noCollision;
+    }
+    private bool edgeControl()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, LayerMask.GetMask("Platform"));
+        if (hit.collider == null)
+            return false;
+        return true;
     }
 
-    private GroundInfoEnum statusControl(char compChar)
+    private collisionInfo statusControl(Collider2D compChar)
     {
-        if (compChar == 'B')
-            return GroundInfoEnum.GroundedOnBasicGround;
-        else if (compChar == 'I')
-            return GroundInfoEnum.GroundedOnIceGround;
-        else if (compChar == 'W')
-            return GroundInfoEnum.TochedToWall;
-        else
-            return GroundInfoEnum.notGrounded;
+        if (compChar.CompareTag("RegularGround"))
+            return collisionInfo.CollidingWithBasicGround;
+        else if (compChar.CompareTag("GrassGround"))
+            return collisionInfo.CollidingWithIceGround;
+        else if (compChar.CompareTag("IceGround"))
+            return collisionInfo.CollidingWithStar;
+        return collisionInfo.noCollision;
     }
-    private void Update()
+    private sideInfo sideControl(Vector3 normal)
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            myPlayer.transform.position += Vector3.up;
-        }
+        float normalX = normal.x;
+        float normalY = normal.y;
+        if (normalX > 0)
+            return sideInfo.right;
+        else if (normalX < 0)
+            return sideInfo.left;
+        else if (normalY > 0)
+            return sideInfo.up;
+        else if (normalY < 0)
+            return sideInfo.down;
+        return sideInfo.UNDEFINED;
     }
+
 }
