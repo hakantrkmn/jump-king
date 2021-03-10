@@ -1455,7 +1455,7 @@ GameObject:
   - component: {fileID: 1285840606}
   m_Layer: 0
   m_Name: Tilemap
-  m_TagString: B
+  m_TagString: RegularGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2624,9 +2624,9 @@ GameObject:
   - component: {fileID: 1570042575}
   - component: {fileID: 1570042574}
   - component: {fileID: 1570042579}
-  - component: {fileID: 1570042578}
-  - component: {fileID: 1570042580}
   - component: {fileID: 1570042581}
+  - component: {fileID: 1570042580}
+  - component: {fileID: 1570042578}
   m_Layer: 0
   m_Name: sean
   m_TagString: Untagged
@@ -2662,13 +2662,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570042573}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.053812683, y: 0.121739864}
+  m_Offset: {x: 0.0124871135, y: 0.027721167}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2679,7 +2679,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8929459, y: 4.3596354}
+  m_Size: {x: 1.8808914, y: 4.171598}
   m_EdgeRadius: 0
 --- !u!212 &1570042576
 SpriteRenderer:
@@ -2754,9 +2754,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1570042573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d889cd112925d65419f56ff39ace5495, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dbab06819d84e9459d6592356e204c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpPower: 15
 --- !u!114 &1570042579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2772,44 +2773,32 @@ MonoBehaviour:
   touchedSideInfo: 4
   PlayerCollisionInfo: 0
   isPlayerProperlyOnPlatform: 0
---- !u!60 &1570042580
-PolygonCollider2D:
+--- !u!114 &1570042580
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570042573}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.01, y: 4.45}
-    newSize: {x: 3, y: 3}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.8135408, y: 0.58012015}
-      - {x: 0.815, y: 1.685}
-      - {x: 0.635, y: 2.175}
-      - {x: -1.115, y: 2.175}
-      - {x: -1.155, y: 0.675}
-      - {x: -1.275, y: 0.655}
-      - {x: 0.04355072, y: -2.0749998}
-    - - {x: -0.4741748, y: -0.40715078}
-      - {x: -0.6327257, y: -0.025474008}
-      - {x: -0.50679505, y: -0.19936633}
-    - - {x: 0.528311, y: -0.22265625}
-      - {x: 0.33824423, y: -0.1872148}
-      - {x: 0.10546756, y: -0.4793718}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6f72c5f355ced41b508838a60bce52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_0: {fileID: 1168318871125359720, guid: 4d02d33e81b5f054c9c3be1fee6820ba,
+    type: 3}
+  player_1: {fileID: -5497444793909511162, guid: 4d02d33e81b5f054c9c3be1fee6820ba,
+    type: 3}
+  player_2: {fileID: -762397440176993130, guid: 4d02d33e81b5f054c9c3be1fee6820ba,
+    type: 3}
+  player_3: {fileID: 3172024132777152365, guid: 4d02d33e81b5f054c9c3be1fee6820ba,
+    type: 3}
+  player_4: {fileID: 4156464116819732485, guid: 4d02d33e81b5f054c9c3be1fee6820ba,
+    type: 3}
+  player_5: {fileID: 1666378067715667894, guid: 4d02d33e81b5f054c9c3be1fee6820ba,
+    type: 3}
+  player_6: {fileID: 7218280350194234598, guid: 4d02d33e81b5f054c9c3be1fee6820ba,
+    type: 3}
 --- !u!114 &1570042581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2825,7 +2814,7 @@ MonoBehaviour:
   currentTouchPos2D: {x: 0, y: 0}
   currentTouchStatus: 3
   touchHoldTime: 0
-  TouchStartPointToEndPoint2D: {x: 0, y: 0}
+  TouchEndPos2D: {x: 0, y: 0}
 --- !u!1 &1810798365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,7 +2978,7 @@ GameObject:
   - component: {fileID: 1906819439}
   m_Layer: 0
   m_Name: 1611698467330
-  m_TagString: B
+  m_TagString: RegularGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

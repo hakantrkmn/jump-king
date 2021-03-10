@@ -8,8 +8,8 @@ public class InputManager : MonoBehaviour
     public touchStatus currentTouchStatus = touchStatus.notTouching;
     public float touchHoldTime = 0f;
     Vector2 TouchStartPos2D;
-    Vector2 TouchEndPos2D;
-    public Vector2 TouchStartPointToEndPoint2D;
+    public Vector2 TouchEndPos2D;
+    Vector2 TouchStartPointToEndPoint2D;
 
     private void Update()
     {
