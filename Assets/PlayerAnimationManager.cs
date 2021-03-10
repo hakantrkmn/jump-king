@@ -66,7 +66,7 @@ public class PlayerAnimationManager : MonoBehaviour
         }
 
 
-        if (inputStatus == touchStatus.touchOnScreen)
+        if (inputStatus == touchStatus.touchOnScreen&&animationTrigger)
         {
             animationTrigger = false;
             StartCoroutine(jumpBegin());
