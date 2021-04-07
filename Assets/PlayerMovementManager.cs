@@ -6,6 +6,8 @@ public class PlayerMovementManager : MonoBehaviour
     Vector2 fingerPoint;
     Vector2 jumpVector;
     float xAngle;
+    Vector3 lastVelo;
+
 
     CollisionManager _PlayerCollisionManager;
     Rigidbody2D _PlayerRigidBody;
@@ -21,6 +23,22 @@ public class PlayerMovementManager : MonoBehaviour
 
     void Update()
     {
+
+        if (_PlayerCollisionManager.PlayerCollisionInfo!=collisionInfo.noCollision)
+        {
+            if (_PlayerCollisionManager.touchedSideInfo != sideInfo.up && _PlayerCollisionManager.touchedSideInfo != sideInfo.capraz)
+            {
+                var speed = lastVelo.magnitude;
+                var direction = Vector3.Reflect(lastVelo.normalized, _PlayerCollisionManager.normal);
+
+
+                _PlayerRigidBody.velocity = direction * (speed * 0.5f);
+                _PlayerCollisionManager.touchedSideInfo = sideInfo.up;
+            }
+        }
+        lastVelo = _PlayerRigidBody.velocity;
+
+
         setBoundariesforPlayerPosition();
         collisionInfo PlayerCollisionInfo = _PlayerCollisionManager.PlayerCollisionInfo;
         Vector2 PlayerVelocity = _PlayerRigidBody.velocity;
@@ -33,7 +51,7 @@ public class PlayerMovementManager : MonoBehaviour
             if (inputStatus == touchStatus.touchReleased)
             {
                 Vector2 jumpDirectionVector = calculateJumpDirectionVector(_InputManager.TouchEndPos2D, _InputManager.touchHoldTime);
-                Debug.Log(jumpDirectionVector);
+
                 _PlayerRigidBody.AddForce(jumpDirectionVector * jumpPower);
 
             }
@@ -79,7 +97,7 @@ public class PlayerMovementManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Here");
+
         return jumpVector*touchHoldTime;
     }
 

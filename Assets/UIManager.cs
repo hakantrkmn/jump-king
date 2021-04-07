@@ -8,15 +8,24 @@ public class UIManager : MonoBehaviour
 {
     
     private bool isVoiceOn=true;
-    public Sprite[] voiceonoffSprites; 
+    public Sprite[] voiceonoffSprites;
+
+    public GameObject spaceMan;
     void Start()
     {
-        
+        InvokeRepeating("CreateSpaceMan", 0, 2);
     }
 
     void Update()
     {
         
+    }
+
+    public void CreateSpaceMan()
+    {
+        var x = Random.Range(0, Screen.height);
+        var y = Random.Range(0, Screen.width);
+        var SMan = Instantiate(spaceMan, new Vector2(y, x), Quaternion.identity ,gameObject.transform);
     }
 
     public void onPlayButtonClick()

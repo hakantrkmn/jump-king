@@ -23,5 +23,6 @@ public enum sideInfo
     left,
     up,
     down,
+    capraz,
     UNDEFINED
 }
